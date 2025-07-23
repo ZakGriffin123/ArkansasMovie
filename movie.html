@@ -1,1 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Arkansas Film Industry Hub</title>
+<style>
+  /* Reset & base */
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f9fafb;
+    color: #222;
+  }
+  a {
+    color: #0078D7;
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+
+  header {
+    background: #004d40;
+    color: white;
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  header h1 {
+    margin: 0;
+    font-weight: 700;
+    font-size: 1.5rem;
+  }
+  nav {
+    margin-top: 0.5rem;
+    width: 100%;
+  }
+  nav ul {
+    list-style: none;
+    padding: 0; margin: 0;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  nav li {
+  }
+
+  main {
+    max-width: 1100px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+  }
+
+  .search-container {
+    margin-bottom: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .search-container input[type="text"] {
+    flex-grow: 1;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border: 2px solid #004d40;
+    border-radius: 4px;
+  }
+  .search-container button {
+    background: #00796b;
+    color: white;
+    border: none;
+    padding: 0.5rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  .search-container button:hover {
+    background: #004d40;
+  }
+
+  .section-title {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: #004d40;
+  }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+    gap: 1.5rem;
+  }
+  .card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 3px 7px rgb(0 0 0 / 0.1);
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease;
+  }
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 14px rgb(0 0 0 / 0.15);
+  }
+  .card img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+  }
+  .card h3 {
+    margin: 0 0 0.5rem 0;
+    color: #00796b;
+  }
+  .card p {
+    flex-grow: 1;
+  }
+  .card .links a {
+    display: inline-block;
+    margin-top: 0.5rem;
+    font-weight: 600;
+  }
+
+  /* Search results area */
+  #search-results {
+    margin-top: 2rem;
+  }
+  #search-results h2 {
+    color: #004d40;
+  }
+
+  footer {
+    background: #004d40;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    margin-top: 3rem;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 600px) {
+    header {
+      justify-content: center;
+      text-align: center;
+    }
+    nav ul {
+      justify-content: center;
+    }
+    .search-container {
+      flex-direction: column;
+    }
+    .search-container button {
+      width: 100%;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Arkansas Film Industry Hub</h1>
+  <nav aria-label="Primary navigation">
+    <ul>
+      <li><a href="#films">Arkansas Films</a></li>
+      <li><a href="#actors">Arkansas Actors</a></li>
+      <li><a href="#search-section">Search</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <section id="search-section" aria-label="Search movies and people">
+    <h2 class="section-title">Search Movies and People from Arkansas</h2>
+    <div class="search-container">
+      <input type="text" id="search-input" placeholder="Search for films or actors..." aria-label="Search for films or actors" />
+      <button id="search-btn">Search</button>
+    </div>
+    <div id="search-results" aria-live="polite" aria-atomic="true"></div>
+  </section>
+
+  <section id="films" aria-label="Arkansas films">
+    <h2 class="section-title">Featured Arkansas Films</h2>
+    <div class="cards" id="films-list">
+      <!-- Films inserted by JS -->
+    </div>
+  </section>
+
+  <section id="actors" aria-label="Arkansas actors">
+    <h2 class="section-title">Recognized Arkansas Actors</h2>
+    <div class="cards" id="actors-list">
+      <!-- Actors inserted by JS -->
+    </div>
+  </section>
+</main>
+
+<footer>
+  &copy; 2025 Arkansas Film Industry Hub. All rights reserved.
+</footer>
+
+<script>
+  // Sample data for Arkansas films and actors
+  const films = [
+    {
+      id: 1,
+      title: "Mud",
+      year: 2012,
+      description: "A coming-of-age drama set on the Mississippi River, featuring a fugitive hiding in the wilderness.",
+      image: "https://upload.wikimedia.org/wikipedia/en/e/e8/Mud2012Poster.jpg",
+      links: [
+        { text: "IMDb", url: "https://www.imdb.com/title/tt1935179/" },
+        { text: "Wikipedia", url: "https://en.wikipedia.org/wiki/Mud_(2012_film)" }
+      ]
+    },
+    {
+      id: 2,
+      title: "Take Shelter",
+      year: 2011,
+      description: "A psychological thriller about a man in Arkansas who has apocalyptic visions.",
+      image: "https://upload.wikimedia.org/wikipedia/en/f/f3/Take_Shelter_film_poster.jpg",
+      links: [
+        { text: "IMDb", url: "https://www.imdb.com/title/tt1656186/" },
+        { text: "Wikipedia", url: "https://en.wikipedia.org/wiki/Take_Shelter" }
+      ]
+    },
+    {
+      id: 3,
+      title: "The Double",
+      year: 2013,
+      description: "A comedy-drama about an Arkansas man caught up in a bureaucratic mix-up.",
+      image: "https://upload.wikimedia.org/wikipedia/en/2/29/The_Double_2013_Poster.jpg",
+      links: [
+        { text: "IMDb", url: "https://www.imdb.com/title/tt2614862/" },
+        { text: "Wikipedia", url: "https://en.wikipedia.org/wiki/The_Double_(2013_film)" }
+      ]
+    }
+  ];
+
+  const actors = [
+    {
+      id: 1,
+      name: "Mary Steenburgen",
+      born: "1953",
+      bio: "Oscar-winning actress known for roles in films like \"Melvin and Howard\" and \"Step Brothers.\"",
+      image: "https://upload.wikimedia.org/wikipedia/commons/4/43/Mary_Steenburgen_2015.jpg",
+      links: [
+        { text: "IMDb", url: "https://www.imdb.com/name/nm0829117/" },
+        { text: "Wikipedia", url: "https://en.wikipedia.org/wiki/Mary_Steenburgen" }
+      ]
+    },
+    {
+      id: 2,
+      name: "Billy Bob Thornton",
+      born: "1955",
+      bio: "Actor, filmmaker, and musician, known for \"Sling Blade\" and many other films.",
+      image: "https://upload.wikimedia.org/wikipedia/commons/2/22/Billy_Bob_Thornton_2012.jpg",
+      links: [
+        { text: "IMDb", url: "https://www.imdb.com/name/nm0000673/" },
+        { text: "Wikipedia", url: "https://en.wikipedia.org/wiki/Billy_Bob_Thornton" }
+      ]
+    },
+    {
+      id: 3,
+      name: "Naomi Judd",
+      born: "1946-2022",
+      bio: "Country music singer and actress from Arkansas with a successful entertainment career.",
+      image: "https://upload.wikimedia.org/wikipedia/commons/5/5b/Naomi_Judd_2007.jpg",
+      links: [
+        { text: "Wikipedia", url: "https://en.wikipedia.org/wiki/Naomi_Judd" }
+      ]
+    }
+  ];
+
+  // Function to render film cards
+  function renderFilms(list) {
+    const container = document.getElementById('films-list');
+    container.innerHTML = '';
+    list.forEach(film => {
+      const card = document.createElement('article');
+      card.className = 'card';
+      card.innerHTML = `
+        <img src="${film.image}" alt="Poster for ${film.title}" />
+        <h3>${film.title} (${film.year})</h3>
+        <p>${film.description}</p>
+        <div class="links">
+          ${film.links.map(link => `<a href="${link.url}" target="_blank" rel="noopener">${link.text}</a>`).join(' | ')}
+        </div>
+      `;
+      container.appendChild(card);
+    });
+  }
+
+  // Function to render actor cards
+  function renderActors(list) {
+    const container = document.getElementById('actors-list');
+    container.innerHTML = '';
+    list.forEach(actor => {
+      const card = document.createElement('article');
+      card.className = 'card';
+      card.innerHTML = `
+        <img src="${actor.image}" alt="Photo of ${actor.name}" />
+        <h3>${actor.name} (b. ${actor.born})</h3>
+        <p>${actor.bio}</p>
+        <div class="links">
+          ${actor.links.map(link => `<a href="${link.url}" target="_blank" rel="noopener">${link.text}</a>`).join(' | ')}
+        </div>
+      `;
+      container.appendChild(card);
+    });
+  }
+
+  // Initial render
+  renderFilms(films);
+  renderActors(actors);
+
+  // Search functionality (search in films titles + descriptions + actors names + bios)
+  function searchArkansas(query) {
+    query = query.trim().toLowerCase();
+    if (!query) return {films: [], actors: []};
+
+    const matchedFilms = films.filter(film =>
+      film.title.toLowerCase().includes(query) ||
+      film.description.toLowerCase().includes(query)
+    );
+
+    const matchedActors = actors.filter(actor =>
+      actor.name.toLowerCase().includes(query) ||
+      actor.bio.toLowerCase().includes(query)
+    );
+
+    return { films: matchedFilms, actors: matchedActors };
+  }
+
+  // Display search results with links and info
+  function displaySearchResults(results, query) {
+    const container = document.getElementById('search-results');
+    container.innerHTML = '';
+    if (!query) {
+      container.innerHTML = `<p>Please enter a search term to find movies or actors related to Arkansas.</p>`;
+      return;
+    }
+
+    if (results.films.length === 0 && results.actors.length === 0) {
+      container.innerHTML = `<p>No results found for "<strong>${query}</strong>". Try different keywords or explore our featured films and actors below.</p>`;
+      return;
+    }
+
+    let html = `<h2>Search Results for "<em>${query}</em>"</h2>`;
+
+    if (results.films.length > 0) {
+      html += `<h3>Films</h3><div class="cards">`;
+      results.films.forEach(film => {
+        html += `
+          <article class="card">
+            <img src="${film.image}" alt="Poster for ${film.title}" />
+            <h3>${film.title} (${film.year})</h3>
+            <p>${film.description}</p>
+            <div class="links">
+              ${film.links.map(link => `<a href="${link.url}" target="_blank" rel="noopener">${link.text}</a>`).join(' | ')}
+            </div>
+          </article>
+        `;
+      });
+      html += `</div>`;
+    }
+
+    if (results.actors.length > 0) {
+      html += `<h3>Actors</h3><div class="cards">`;
+      results.actors.forEach(actor => {
+        html += `
+          <article class="card">
+            <img src="${actor.image}" alt="Photo of ${actor.name}" />
+            <h3>${actor.name} (b. ${actor.born})</h3>
+            <p>${actor.bio}</p>
+            <div class="links">
+              ${actor.links.map(link => `<a href="${link.url}" target="_blank" rel="noopener">${link.text}</a>`).join(' | ')}
+            </div>
+          </article>
+        `;
+      });
+      html += `</div>`;
+    }
+
+    container.innerHTML = html;
+  }
+
+  // Event listeners
+  document.getElementById('search-btn').addEventListener('click', () => {
+    const query = document.getElementById('search-input').value;
+    const results = searchArkansas(query);
+    displaySearchResults(results, query);
+  });
+
+  // Search on enter key
+  document.getElementById('search-input').addEventListener('keydown', e => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      document.getElementById('search-btn').click();
+    }
+  });
+
+  // Show initial message in search results
+  displaySearchResults({films: [], actors: []}, '');
+</script>
+
+</body>
+</html>
 
