@@ -204,14 +204,15 @@
 </footer>
 
 <script>
-  // Sample data for Arkansas films and actors
+  // Expanded data for Arkansas films and actors
+
   const films = [
     {
       id: 1,
       title: "Mud",
       year: 2012,
-      description: "A coming-of-age drama set on the Mississippi River, featuring a fugitive hiding in the wilderness.",
-      image: "https://upload.wikimedia.org/wikipedia/en/e/e8/Mud2012Poster.jpg",
+      description: "A coming-of-age drama about two boys who discover a fugitive hiding on an island in the Mississippi River, filmed extensively in Arkansas.",
+      image: "",
       links: [
         { text: "IMDb", url: "https://www.imdb.com/title/tt1935179/" },
         { text: "Wikipedia", url: "https://en.wikipedia.org/wiki/Mud_(2012_film)" }
@@ -221,7 +222,7 @@
       id: 2,
       title: "Take Shelter",
       year: 2011,
-      description: "A psychological thriller about a man in Arkansas who has apocalyptic visions.",
+      description: "A psychological thriller about a man in a small Arkansas town who has apocalyptic visions.",
       image: "https://upload.wikimedia.org/wikipedia/en/f/f3/Take_Shelter_film_poster.jpg",
       links: [
         { text: "IMDb", url: "https://www.imdb.com/title/tt1656186/" },
@@ -232,11 +233,43 @@
       id: 3,
       title: "The Double",
       year: 2013,
-      description: "A comedy-drama about an Arkansas man caught up in a bureaucratic mix-up.",
+      description: "A comedy-drama involving a mistaken identity and espionage, set and filmed in Arkansas.",
       image: "https://upload.wikimedia.org/wikipedia/en/2/29/The_Double_2013_Poster.jpg",
       links: [
         { text: "IMDb", url: "https://www.imdb.com/title/tt2614862/" },
         { text: "Wikipedia", url: "https://en.wikipedia.org/wiki/The_Double_(2013_film)" }
+      ]
+    },
+    {
+      id: 4,
+      title: "Winter’s Bone",
+      year: 2010,
+      description: "A gritty drama about a girl fighting to save her family home in the rural Ozarks, including parts of Arkansas.",
+      image: "https://upload.wikimedia.org/wikipedia/en/0/0f/Winters_bone_poster.jpg",
+      links: [
+        { text: "IMDb", url: "https://www.imdb.com/title/tt1399683/" },
+        { text: "Wikipedia", url: "https://en.wikipedia.org/wiki/Winter%27s_Bone" }
+      ]
+    },
+    {
+      id: 5,
+      title: "Blood on the River",
+      year: 1991,
+      description: "A historical drama involving Civil War events in Arkansas.",
+      image: "https://m.media-amazon.com/images/I/51k56Z5IOQL._AC_.jpg",
+      links: [
+        { text: "IMDb", url: "https://www.imdb.com/title/tt0103030/" }
+      ]
+    },
+    {
+      id: 6,
+      title: "Sling Blade",
+      year: 1996,
+      description: "A drama about a man with a troubled past returning to his hometown in Arkansas, starring and written by Billy Bob Thornton.",
+      image: "https://upload.wikimedia.org/wikipedia/en/4/40/Sling_Blade_poster.jpg",
+      links: [
+        { text: "IMDb", url: "https://www.imdb.com/title/tt0116313/" },
+        { text: "Wikipedia", url: "https://en.wikipedia.org/wiki/Sling_Blade" }
       ]
     }
   ];
@@ -244,20 +277,9 @@
   const actors = [
     {
       id: 1,
-      name: "Mary Steenburgen",
-      born: "1953",
-      bio: "Oscar-winning actress known for roles in films like \"Melvin and Howard\" and \"Step Brothers.\"",
-      image: "https://upload.wikimedia.org/wikipedia/commons/4/43/Mary_Steenburgen_2015.jpg",
-      links: [
-        { text: "IMDb", url: "https://www.imdb.com/name/nm0829117/" },
-        { text: "Wikipedia", url: "https://en.wikipedia.org/wiki/Mary_Steenburgen" }
-      ]
-    },
-    {
-      id: 2,
       name: "Billy Bob Thornton",
       born: "1955",
-      bio: "Actor, filmmaker, and musician, known for \"Sling Blade\" and many other films.",
+      bio: "Actor, filmmaker, and musician from Arkansas, known for writing and starring in \"Sling Blade\" and roles in \"Bad Santa\" and \"Fargo.\"",
       image: "https://upload.wikimedia.org/wikipedia/commons/2/22/Billy_Bob_Thornton_2012.jpg",
       links: [
         { text: "IMDb", url: "https://www.imdb.com/name/nm0000673/" },
@@ -265,13 +287,56 @@
       ]
     },
     {
+      id: 2,
+      name: "Mary Steenburgen",
+      born: "1953",
+      bio: "Oscar-winning actress from Arkansas, known for roles in \"Melvin and Howard,\" \"Step Brothers,\" and \"Back to the Future Part III.\"",
+      image: "https://upload.wikimedia.org/wikipedia/commons/4/43/Mary_Steenburgen_2015.jpg",
+      links: [
+        { text: "IMDb", url: "https://www.imdb.com/name/nm0829117/" },
+        { text: "Wikipedia", url: "https://en.wikipedia.org/wiki/Mary_Steenburgen" }
+      ]
+    },
+    {
       id: 3,
+      name: "Jeff Nichols",
+      born: "1978",
+      bio: "Arkansas-born director of critically acclaimed films like \"Mud\" and \"Take Shelter,\" known for showcasing Arkansas landscapes.",
+      image: "https://upload.wikimedia.org/wikipedia/commons/6/67/Jeff_Nichols_2016.jpg",
+      links: [
+        { text: "IMDb", url: "https://www.imdb.com/name/nm1636076/" },
+        { text: "Wikipedia", url: "https://en.wikipedia.org/wiki/Jeff_Nichols" }
+      ]
+    },
+    {
+      id: 4,
       name: "Naomi Judd",
       born: "1946-2022",
-      bio: "Country music singer and actress from Arkansas with a successful entertainment career.",
+      bio: "Country singer and occasional actress from Arkansas, known for her impact on music and entertainment.",
       image: "https://upload.wikimedia.org/wikipedia/commons/5/5b/Naomi_Judd_2007.jpg",
       links: [
         { text: "Wikipedia", url: "https://en.wikipedia.org/wiki/Naomi_Judd" }
+      ]
+    },
+    {
+      id: 5,
+      name: "Leigh Zimmerman",
+      born: "1964",
+      bio: "Actress from Arkansas with acclaimed performances in stage and film productions.",
+      image: "https://upload.wikimedia.org/wikipedia/commons/a/a6/Leigh_Zimmerman_2009.jpg",
+      links: [
+        { text: "IMDb", url: "https://www.imdb.com/name/nm0958021/" },
+        { text: "Wikipedia", url: "https://en.wikipedia.org/wiki/Leigh_Zimmerman" }
+      ]
+    },
+    {
+      id: 6,
+      name: "John Griesemer",
+      born: "1947",
+      bio: "Actor and writer from Arkansas with appearances in film and television.",
+      image: "https://m.media-amazon.com/images/M/MV5BMTI2MzY3NzQ0NF5BMl5BanBnXkFtZTcwOTg4NjQ3OA@@._V1_UY317_CR16,0,214,317_AL_.jpg",
+      links: [
+        { text: "IMDb", url: "https://www.imdb.com/name/nm0341500/" }
       ]
     }
   ];
@@ -313,10 +378,6 @@
       container.appendChild(card);
     });
   }
-
-  // Initial render
-  renderFilms(films);
-  renderActors(actors);
 
   // Search functionality (search in films titles + descriptions + actors names + bios)
   function searchArkansas(query) {
@@ -406,6 +467,10 @@
 
   // Show initial message in search results
   displaySearchResults({films: [], actors: []}, '');
+
+  // Initial render of films and actors sections
+  renderFilms(films);
+  renderActors(actors);
 </script>
 
 </body>
