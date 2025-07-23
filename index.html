@@ -212,7 +212,7 @@
       title: "Mud",
       year: 2012,
       description: "A coming-of-age drama about two boys who discover a fugitive hiding on an island in the Mississippi River, filmed extensively in Arkansas.",
-      image: "",
+      image: "Mud_poster.jpg",
       links: [
         { text: "IMDb", url: "https://www.imdb.com/title/tt1935179/" },
         { text: "Wikipedia", url: "https://en.wikipedia.org/wiki/Mud_(2012_film)" }
@@ -450,14 +450,14 @@
     container.innerHTML = html;
   }
 
-  // Event listeners
+  
   document.getElementById('search-btn').addEventListener('click', () => {
     const query = document.getElementById('search-input').value;
     const results = searchArkansas(query);
     displaySearchResults(results, query);
   });
 
-  // Search on enter key
+  
   document.getElementById('search-input').addEventListener('keydown', e => {
     if (e.key === 'Enter') {
       e.preventDefault();
