@@ -1,691 +1,468 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Arkansas Film Gateway</title>
-  <meta name="description" content="Discover films, talent, and production resources connected to Arkansas. Attract filmmakers & actors. Celebrate local stories."/>
-  <link rel="preconnect" href="https://fonts.gstatic.com"/>
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet"/>
-  <style>
-    :root {
-      --ark-red: #c8102e;
-      --ark-red-dark: #a00d25;
-      --ark-blue: #1b365d;
-      --ark-gray-100: #f9fafb;
-      --ark-gray-200: #f3f4f6;
-      --ark-gray-300: #e5e7eb;
-      --ark-gray-400: #d1d5db;
-      --ark-gray-500: #9ca3af;
-      --ark-gray-700: #374151;
-      --ark-gray-900: #111827;
-      --radius-lg: 1rem;
-      --radius-md: .5rem;
-      --radius-sm: .25rem;
-      --max-w: 1200px;
-      --trans-fast: 150ms;
-      --shadow-sm: 0 1px 3px rgba(0,0,0,.1);
-      --shadow-md: 0 4px 12px rgba(0,0,0,.12);
-      --shadow-lg: 0 10px 25px rgba(0,0,0,.18);
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Arkansas Film Industry Hub</title>
+<style>
+  /* Reset & base */
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f9fafb;
+    color: #222;
+  }
+  a {
+    color: #0078D7;
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+
+  header {
+    background: #004d40;
+    color: white;
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  header h1 {
+    margin: 0;
+    font-weight: 700;
+    font-size: 1.5rem;
+  }
+  nav {
+    margin-top: 0.5rem;
+    width: 100%;
+  }
+  nav ul {
+    list-style: none;
+    padding: 0; margin: 0;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  nav li {
+  }
+
+  main {
+    max-width: 1100px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+  }
+
+  .search-container {
+    margin-bottom: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .search-container input[type="text"] {
+    flex-grow: 1;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border: 2px solid #004d40;
+    border-radius: 4px;
+  }
+  .search-container button {
+    background: #00796b;
+    color: white;
+    border: none;
+    padding: 0.5rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  .search-container button:hover {
+    background: #004d40;
+  }
+
+  .section-title {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: #004d40;
+  }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+    gap: 1.5rem;
+  }
+  .card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 3px 7px rgb(0 0 0 / 0.1);
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease;
+  }
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 14px rgb(0 0 0 / 0.15);
+  }
+  .card img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+  }
+  .card h3 {
+    margin: 0 0 0.5rem 0;
+    color: #00796b;
+  }
+  .card p {
+    flex-grow: 1;
+  }
+  .card .links a {
+    display: inline-block;
+    margin-top: 0.5rem;
+    font-weight: 600;
+  }
+
+  /* Search results area */
+  #search-results {
+    margin-top: 2rem;
+  }
+  #search-results h2 {
+    color: #004d40;
+  }
+
+  footer {
+    background: #004d40;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    margin-top: 3rem;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 600px) {
+    header {
+      justify-content: center;
+      text-align: center;
     }
-
-    *{box-sizing:border-box;}
-    html,body{margin:0;padding:0;font-family:"Inter",system-ui,Arial,sans-serif;color:var(--ark-gray-900);background:var(--ark-gray-100);line-height:1.5;}
-    img{max-width:100%;display:block;height:auto;}
-    a{color:var(--ark-red);text-decoration:none;}a:hover{text-decoration:underline;}
-    h1,h2,h3{line-height:1.2;margin:0 0 .5em;}
-    p{margin:0 0 1em;}
-    button{cursor:pointer;font-family:inherit;}
-
-    /* Layout */
-    header.site-header{position:sticky;top:0;z-index:100;background:#fff;border-bottom:1px solid var(--ark-gray-300);box-shadow:var(--shadow-sm);}
-    .header-inner{max-width:var(--max-w);margin:0 auto;padding:.5rem 1rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;}
-    .brand{display:flex;align-items:center;gap:.5rem;font-weight:700;font-size:1.25rem;color:var(--ark-red-dark);}
-    nav.primary-nav{display:none;}
-    nav.primary-nav a{padding:.5rem 1rem;border-radius:var(--radius-sm);display:inline-block;font-weight:600;color:var(--ark-gray-900);} 
-    nav.primary-nav a:hover{background:var(--ark-gray-200);}
-    .nav-toggle{background:none;border:none;padding:.25rem;line-height:0;}
-
-    /* Mobile nav drawer */
-    .mobile-menu{position:fixed;inset:0;background:rgba(0,0,0,.4);display:none;}
-    .mobile-menu.active{display:block;}
-    .mobile-menu-panel{position:absolute;top:0;right:0;width:min(80%,300px);height:100%;background:#fff;padding:2rem 1rem;display:flex;flex-direction:column;gap:1rem;}
-    .mobile-menu-panel a{font-weight:600;font-size:1.125rem;padding:.75rem 1rem;border-radius:var(--radius-sm);} 
-    .mobile-menu-panel a:hover{background:var(--ark-gray-200);}
-
-    main{width:100%;}
-
-    /* Hero */
-    .hero{position:relative;background:var(--ark-blue);color:#fff;padding:6rem 1rem 5rem;text-align:center;overflow:hidden;}
-    .hero::after{content:"";position:absolute;inset:0;background:url('https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Flag_of_Arkansas.svg/2880px-Flag_of_Arkansas.svg.png') center/cover;opacity:.05;mix-blend-mode:screen;pointer-events:none;}
-    .hero-content{position:relative;max-width:700px;margin:0 auto;}
-    .hero h1{font-size:clamp(2rem,5vw,3.25rem);margin-bottom:.75em;}
-    .hero p{font-size:1.125rem;margin-bottom:2rem;}
-    .hero .cta-group{display:flex;flex-wrap:wrap;justify-content:center;gap:1rem;}
-    .btn{display:inline-block;padding:.85rem 1.5rem;font-weight:600;border:none;border-radius:var(--radius-md);transition:background var(--trans-fast),transform var(--trans-fast);}
-    .btn-primary{background:var(--ark-red);color:#fff;}
-    .btn-primary:hover{background:var(--ark-red-dark);transform:translateY(-1px);} 
-    .btn-secondary{background:#fff;color:var(--ark-red-dark);}
-    .btn-secondary:hover{background:var(--ark-gray-200);transform:translateY(-1px);} 
-
-    /* Search Bar */
-    .search-wrapper{max-width:var(--max-w);margin:-2.5rem auto 0;padding:0 1rem;position:relative;z-index:5;}
-    .search-card{background:#fff;padding:1.5rem;border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);display:grid;grid-template-columns:1fr auto;gap:1rem;align-items:center;}
-    .search-card input[type="search"]{width:100%;padding:1rem;font-size:1rem;border:1px solid var(--ark-gray-300);border-radius:var(--radius-md);}
-    .search-card select{padding:.9rem 1rem;font-size:1rem;border:1px solid var(--ark-gray-300);border-radius:var(--radius-md);background:#fff;}
-    .search-card button{padding:1rem 1.5rem;font-size:1rem;}
-
-    /* Section wrapper */
-    .section{max-width:var(--max-w);margin:4rem auto;padding:0 1rem;}
-    .section-header{text-align:center;margin-bottom:2.5rem;}
-    .section-header p{max-width:600px;margin:0 auto;}
-
-    /* Card grids */
-    .card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,220px),1fr));gap:1.5rem;}
-    .card{background:#fff;border-radius:var(--radius-md);overflow:hidden;box-shadow:var(--shadow-md);display:flex;flex-direction:column;}
-    .card-media{aspect-ratio:16/9;background:var(--ark-gray-300);overflow:hidden;}
-    .card-content{padding:1rem;flex:1;display:flex;flex-direction:column;}
-    .card-title{font-size:1.125rem;font-weight:700;margin-bottom:.25rem;}
-    .card-meta{font-size:.875rem;color:var(--ark-gray-500);margin-bottom:.75rem;}
-    .card-desc{font-size:.95rem;color:var(--ark-gray-700);margin-bottom:auto;}
-    .card-actions{margin-top:1rem;}
-    .card-actions a{font-size:.875rem;font-weight:600;}
-
-    /* Responsive media for people cards */
-    .person-card-media{aspect-ratio:3/4;object-fit:cover;width:100%;height:auto;}
-
-    /* CTA Banner */
-    .cta-banner{background:var(--ark-red);color:#fff;padding:3rem 1rem;text-align:center;border-radius:var(--radius-lg);box-shadow:var(--shadow-md);}
-    .cta-banner h2{font-size:1.75rem;margin-bottom:1rem;}
-
-    /* Discovery Links (pills) */
-    .pill-links{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;margin-top:1rem;}
-    .pill{display:inline-block;padding:.5rem 1rem;border-radius:999px;background:var(--ark-gray-300);font-size:.875rem;color:var(--ark-gray-700);}
-    .pill:hover{background:var(--ark-gray-400);}
-
-    /* Footer */
-    footer.site-footer{background:var(--ark-blue);color:#fff;padding:3rem 1rem;margin-top:4rem;}
-    .footer-inner{max-width:var(--max-w);margin:0 auto;display:grid;gap:2rem;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));}
-    .footer-brand{font-weight:700;font-size:1.25rem;margin-bottom:.5rem;color:#fff;}
-    .footer-nav a{display:block;margin-bottom:.5rem;color:#fff;}
-    .footer-copy{text-align:center;margin-top:2rem;font-size:.875rem;color:rgba(255,255,255,.8);} 
-
-    /* Detail Drawer / Modal */
-    .detail-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:flex-end;justify-content:center;z-index:200;padding:1rem;}
-    .detail-backdrop.active{display:flex;}
-    .detail-modal{width:min(100%,700px);max-height:95%;overflow-y:auto;background:#fff;border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);padding:1.5rem;position:relative;}
-    .detail-close{position:absolute;top:.5rem;right:.5rem;background:none;border:none;font-size:1.5rem;line-height:1;}
-    .detail-media{margin-bottom:1.5rem;}
-    .detail-meta{font-size:.95rem;color:var(--ark-gray-700);margin-bottom:1rem;}
-    .detail-body{margin-bottom:1.5rem;}
-    .detail-related h4{margin-bottom:.5rem;}
-    .detail-related-list{display:flex;flex-wrap:wrap;gap:.5rem;}
-    .detail-related-list a{font-size:.875rem;font-weight:600;padding:.25rem .75rem;border-radius:999px;background:var(--ark-gray-300);}
-
-    /* Forms */
-    form.basic-form{display:grid;gap:1rem;max-width:500px;margin:0 auto;text-align:left;}
-    form.basic-form label{font-weight:600;}
-    form.basic-form input,form.basic-form textarea,form.basic-form select{width:100%;padding:.75rem;font-size:1rem;border:1px solid var(--ark-gray-300);border-radius:var(--radius-md);font-family:inherit;}
-    form.basic-form textarea{min-height:120px;resize:vertical;}
-
-    /* Media Queries */
-    @media (min-width:600px){
-      nav.primary-nav{display:block;}
-      .nav-toggle{display:none;}
-      .search-card{grid-template-columns:1fr auto auto;}
-      .hero{padding:8rem 1rem 7rem;}
+    nav ul {
+      justify-content: center;
     }
-  </style>
+    .search-container {
+      flex-direction: column;
+    }
+    .search-container button {
+      width: 100%;
+    }
+  }
+</style>
 </head>
 <body>
-  <header class="site-header" role="banner">
-    <div class="header-inner">
-      <a href="#top" class="brand" aria-label="Arkansas Film Gateway home">🎬 AR Film</a>
-      <nav class="primary-nav" aria-label="Primary">
-        <a href="#films">Films</a>
-        <a href="#people">People</a>
-        <a href="#resources">Film In Arkansas</a>
-        <a href="#contact">Contact</a>
-      </nav>
-      <button class="nav-toggle" aria-label="Open menu" id="navToggle">☰</button>
+
+<header>
+  <h1>Arkansas Film Industry Hub</h1>
+  <nav aria-label="Primary navigation">
+    <ul>
+      <li><a href="#films">Arkansas Films</a></li>
+      <li><a href="#actors">Arkansas Actors</a></li>
+      <li><a href="#search-section">Search</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <section id="search-section" aria-label="Search movies and people">
+    <h2 class="section-title">Search Movies and People from Arkansas</h2>
+    <div class="search-container">
+      <input type="text" id="search-input" placeholder="Search for films or actors..." aria-label="Search for films or actors" />
+      <button id="search-btn">Search</button>
     </div>
-  </header>
+    <div id="search-results" aria-live="polite" aria-atomic="true"></div>
+  </section>
 
-  <!-- Mobile menu drawer -->
-  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
-    <div class="mobile-menu-panel" role="dialog" aria-modal="true" aria-label="Mobile menu">
-      <button class="nav-toggle" aria-label="Close menu" id="mobileMenuClose">✕</button>
-      <a href="#films" onclick="closeMobileMenu()">Films</a>
-      <a href="#people" onclick="closeMobileMenu()">People</a>
-      <a href="#resources" onclick="closeMobileMenu()">Film In Arkansas</a>
-      <a href="#contact" onclick="closeMobileMenu()">Contact</a>
+  <section id="films" aria-label="Arkansas films">
+    <h2 class="section-title">Featured Arkansas Films</h2>
+    <div class="cards" id="films-list">
+      <!-- Films inserted by JS -->
     </div>
-  </div>
+  </section>
 
-  <main id="top">
-    <!-- HERO -->
-    <section class="hero" id="hero" role="region" aria-label="Arkansas Film Gateway hero">
-      <div class="hero-content">
-        <h1>Arkansas Film Gateway</h1>
-        <p>Promoting filmmaking in the Natural State. Discover local talent, explore Arkansas-made movies, and tap into production resources that make shooting here a breeze.</p>
-        <div class="cta-group">
-          <a href="#search" class="btn btn-primary">Start Searching</a>
-          <a href="#resources" class="btn btn-secondary">Film In Arkansas</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- SEARCH -->
-    <div class="search-wrapper" id="search">
-      <div class="search-card" role="search">
-        <label class="visually-hidden" for="searchInput">Search Arkansas films & people</label>
-        <input type="search" id="searchInput" placeholder="Search films, actors, directors..." autocomplete="off" />
-        <label class="visually-hidden" for="searchType">Filter type</label>
-        <select id="searchType">
-          <option value="all" selected>All</option>
-          <option value="film">Films</option>
-          <option value="person">People</option>
-        </select>
-        <button class="btn btn-primary" id="searchBtn">Search</button>
-      </div>
+  <section id="actors" aria-label="Arkansas actors">
+    <h2 class="section-title">Recognized Arkansas Actors</h2>
+    <div class="cards" id="actors-list">
+      <!-- Actors inserted by JS -->
     </div>
+  </section>
+</main>
 
-    <!-- FEATURED FILMS -->
-    <section class="section" id="films">
-      <div class="section-header">
-        <h2>Featured Arkansas Films</h2>
-        <p>Signature productions shot in or tied to Arkansas. Click a title to learn more and explore related talent, locations, and resources.</p>
-      </div>
-      <div class="card-grid" id="filmGrid"><!-- populated by JS --></div>
-    </section>
+<footer>
+  &copy; 2025 Arkansas Film Industry Hub. All rights reserved.
+</footer>
 
-    <!-- FEATURED PEOPLE -->
-    <section class="section" id="people">
-      <div class="section-header">
-        <h2>Arkansas Talent Spotlight</h2>
-        <p>Actors, directors, writers, and crew with roots in the Natural State.</p>
-      </div>
-      <div class="card-grid" id="peopleGrid"><!-- populated by JS --></div>
-    </section>
+<script>
+  // Expanded data for Arkansas films and actors
 
-    <!-- RESOURCES / FILM IN ARKANSAS -->
-    <section class="section" id="resources">
-      <div class="section-header">
-        <h2>Film In Arkansas</h2>
-        <p>From tax incentives to scenic locations, Arkansas is production-friendly. Use these resources to plan your next shoot.</p>
-      </div>
-      <div class="card-grid" id="resourceGrid"><!-- populated by JS --></div>
-      <div class="cta-banner" style="margin-top:3rem;">
-        <h2>Bring Your Story To Arkansas</h2>
-        <p>Reach out to our production concierge team to discuss incentives, crew, locations, and support.</p>
-        <a class="btn btn-secondary" href="#contact">Contact Us</a>
-      </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section class="section" id="contact">
-      <div class="section-header">
-        <h2>Contact / Submit A Project</h2>
-        <p>Have a film tied to Arkansas? Want to get listed? Planning a shoot? Drop us a note and we’ll follow up.</p>
-      </div>
-      <form class="basic-form" id="contactForm" novalidate>
-        <div>
-          <label for="contactName">Name</label>
-          <input type="text" id="contactName" required />
-        </div>
-        <div>
-          <label for="contactEmail">Email</label>
-          <input type="email" id="contactEmail" required />
-        </div>
-        <div>
-          <label for="contactType">Inquiry Type</label>
-          <select id="contactType">
-            <option value="general">General</option>
-            <option value="submit-film">Submit Film</option>
-            <option value="list-talent">List Talent</option>
-            <option value="shoot-ar">Shoot in Arkansas</option>
-          </select>
-        </div>
-        <div>
-          <label for="contactMessage">Message</label>
-          <textarea id="contactMessage" required></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary">Send</button>
-        <p id="contactStatus" role="status" aria-live="polite" style="margin-top:.5rem;font-size:.875rem;"></p>
-      </form>
-    </section>
-  </main>
-
-  <footer class="site-footer" role="contentinfo">
-    <div class="footer-inner">
-      <div>
-        <div class="footer-brand">Arkansas Film Gateway</div>
-        <p>Connecting filmmakers, talent, and audiences with Arkansas stories.</p>
-      </div>
-      <div class="footer-nav">
-        <strong>Explore</strong>
-        <a href="#films">Films</a>
-        <a href="#people">People</a>
-        <a href="#resources">Film In Arkansas</a>
-      </div>
-      <div class="footer-nav">
-        <strong>Get Involved</strong>
-        <a href="#contact">Submit A Film</a>
-        <a href="#contact">List Your Talent</a>
-        <a href="#contact">Production Support</a>
-      </div>
-    </div>
-    <div class="footer-copy">© <span id="copyrightYear"></span> Arkansas Film Gateway. All rights reserved.</div>
-  </footer>
-
-  <!-- Detail Modal Template -->
-  <div class="detail-backdrop" id="detailBackdrop" aria-hidden="true">
-    <article class="detail-modal" id="detailModal" role="dialog" aria-modal="true" aria-labelledby="detailTitle">
-      <button class="detail-close" aria-label="Close details" id="detailClose">✕</button>
-      <div class="detail-media" id="detailMedia"></div>
-      <h3 id="detailTitle"></h3>
-      <div class="detail-meta" id="detailMeta"></div>
-      <div class="detail-body" id="detailBody"></div>
-      <div class="detail-related" id="detailRelated" hidden>
-        <h4>Related</h4>
-        <div class="detail-related-list" id="detailRelatedList"></div>
-      </div>
-    </article>
-  </div>
-
-  <!-- Accessible helper class -->
-  <style>
-    .visually-hidden{position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap;}
-  </style>
-
-  <script>
-  /* =============================================================
-     SIMPLE DATA MODEL (Sample / Starter Data)
-     Replace or expand with real data from your backend / API.
-     Each film and person includes an id so we can interlink.
-  ============================================================= */
   const films = [
     {
-      id:"film-mud",
-      title:"Mud",
-      year:2012,
-      locations:["Arkansas River","De Witt","Dumas"],
-      synopsis:"Two boys in rural Arkansas encounter a fugitive named Mud hiding on an island in the Mississippi River.",
-      image:"https://upload.wikimedia.org/wikipedia/en/4/40/Mud2013Poster.jpg",
-      people:["p-jeff-nichols","p-matthew-mcconaughey","p-tye-sheridan"],
-      links:[{label:"IMDb",url:"https://www.imdb.com/title/tt1935179/"}]
+      id: 1,
+      title: "Mud",
+      year: 2012,
+      description: "A coming-of-age drama about two boys who discover a fugitive hiding on an island in the Mississippi River, filmed extensively in Arkansas.",
+      image: "Mud_poster.jpg",
+      links: [
+        { text: "IMDb", url: "https://www.imdb.com/title/tt1935179/" },
+        { text: "Wikipedia", url: "https://en.wikipedia.org/wiki/Jeff_Nichols" }
+      ]
     },
     {
-      id:"film-sling-blade",
-      title:"Sling Blade",
-      year:1996,
-      locations:["Arkansas"],
-      synopsis:"Karl Childers, a man with an intellectual disability released from a psychiatric hospital, returns to his Arkansas hometown.",
-      image:"https://upload.wikimedia.org/wikipedia/en/6/6f/Sling_Blade_Poster.jpg",
-      people:["p-billy-bob-thornton","p-dwight-yoakam"],
-      links:[{label:"IMDb",url:"https://www.imdb.com/title/tt0117666/"}]
+      id: 2,
+      title: "Take Shelter",
+      year: 2011,
+      description: "A psychological thriller about a man in a small Arkansas town who has apocalyptic visions.",
+      image: "take shelter.jpg",
+      links: [
+        { text: "IMDb", url: "https://www.imdb.com/title/tt1675192/" },
+        { text: "Wikipedia", url: "https://en.wikipedia.org/wiki/Take_Shelter" }
+      ]
     },
     {
-      id:"film-gods-not-dead2",
-      title:"God's Not Dead 2",
-      year:2016,
-      locations:["Little Rock","North Little Rock"],
-      synopsis:"A high school teacher faces a court case after answering a student's question about Jesus. Filmed in Arkansas.",
-      image:"https://upload.wikimedia.org/wikipedia/en/7/7a/Gods_Not_Dead_2_poster.jpg",
-      people:["p-melissa-joan-hart","p-jesse-metcalfe"],
-      links:[{label:"IMDb",url:"https://www.imdb.com/title/tt4824308/"}]
+      id: 3,
+      title: "The Double",
+      year: 2013,
+      description: "A comedy-drama involving a mistaken identity and espionage, set and filmed in Arkansas.",
+      image: "thedouble.jpg",
+      links: [
+        { text: "IMDb", url: "https://www.imdb.com/title/tt1825157/" },
+        { text: "Wikipedia", url: "https://en.wikipedia.org/wiki/The_Double_(2013_film)" }
+      ]
     },
     {
-      id:"film-minari",
-      title:"Minari",
-      year:2020,
-      locations:["Tulsa OK (stand-in)","Arkansas story"],
-      synopsis:"A Korean American family moves to rural Arkansas to start a farm in the 1980s.",
-      image:"https://upload.wikimedia.org/wikipedia/en/a/a9/Minari_%28film%29.png",
-      people:["p-steven-yeun","p-lee-isaac-chung","p-youn-yuh-jung"],
-      links:[{label:"IMDb",url:"https://www.imdb.com/title/tt10633456/"}]
+      id: 4,
+      title: "Winter’s Bone",
+      year: 2010,
+      description: "A gritty drama about a girl fighting to save her family home in the rural Ozarks, including parts of Arkansas.",
+      image: "wintersbone.jpg",
+      links: [
+        { text: "IMDb", url: "https://www.imdb.com/title/tt1399683/" },
+        { text: "Wikipedia", url: "https://en.wikipedia.org/wiki/Winter%27s_Bone" }
+      ]
+    },
+    {
+     id: 5,
+    title: "The Legend of Boggy Creek",
+    year: 1972,
+    description: "A docudrama-style horror film about sightings of the Fouke Monster in Arkansas. It became a cult classic for its eerie storytelling.",
+    image: "boggy.jpg",
+    links: [
+      { text: "IMDb", url: "https://www.imdb.com/title/tt0068837/" },
+      { text: "Wikipedia", url: "https://en.wikipedia.org/wiki/The_Legend_of_Boggy_Creek" }
+      ]
+    },
+    {
+      id: 6,
+      title: "Sling Blade",
+      year: 1996,
+      description: "A drama about a man with a troubled past returning to his hometown in Arkansas, starring and written by Billy Bob Thornton.",
+      image: "slingblade.jpg",
+      links: [
+        { text: "IMDb", url: "https://www.imdb.com/title/tt0117666/" },
+        { text: "Wikipedia", url: "https://en.wikipedia.org/wiki/Sling_Blade" }
+      ]
     }
   ];
 
-  const people = [
+  const actors = [
     {
-      id:"p-jeff-nichols",
-      name:"Jeff Nichols",
-      role:"Director / Writer (Little Rock native)",
-      bio:"Known for atmospheric Southern dramas including Mud, Shotgun Stories, and Loving.",
-      image:"https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Jeff_Nichols_Cannes_2016.jpg/440px-Jeff_Nichols_Cannes_2016.jpg",
-      films:["film-mud"],
-      links:[{label:"IMDb",url:"https://www.imdb.com/name/nm1748271/"}]
+      id: 1,
+      name: "Billy Bob Thornton",
+      born: "1955",
+      bio: "Actor, filmmaker, and musician from Arkansas, known for writing and starring in \"Sling Blade\" and roles in \"Bad Santa\" and \"Fargo.\"",
+      image: "billy.webp",
+      links: [
+        { text: "IMDb", url: "https://www.imdb.com/name/nm0000673/" },
+        { text: "Wikipedia", url: "https://en.wikipedia.org/wiki/Billy_Bob_Thornton" }
+      ]
     },
     {
-      id:"p-matthew-mcconaughey",
-      name:"Matthew McConaughey",
-      role:"Actor (starred in Mud)",
-      bio:"Oscar-winning actor who played the title character Mud.",
-      image:"https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/McConaughey_-_2015.jpg/440px-McConaughey_-_2015.jpg",
-      films:["film-mud"],
-      links:[{label:"IMDb",url:"https://www.imdb.com/name/nm0000190/"}]
+      id: 2,
+      name: "Mary Steenburgen",
+      born: "1953",
+      bio: "Oscar-winning actress from Arkansas, known for roles in \"Melvin and Howard,\" \"Step Brothers,\" and \"Back to the Future Part III.\"",
+      image: "mary.jpg",
+      links: [
+        { text: "IMDb", url: "https://www.imdb.com/name/nm0829117/" },
+        { text: "Wikipedia", url: "https://en.wikipedia.org/wiki/Mary_Steenburgen" }
+      ]
     },
     {
-      id:"p-tye-sheridan",
-      name:"Tye Sheridan",
-      role:"Actor (born in Elkhart Texas, raised partly in Texas) - Appeared in Mud as Ellis.",
-      bio:"Known for roles in Mud, Ready Player One, and X-Men franchise.",
-      image:"https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Tye_Sheridan_at_2018_San_Diego_Comic-Con.jpg/440px-Tye_Sheridan_at_2018_San_Diego_Comic-Con.jpg",
-      films:["film-mud"],
-      links:[{label:"IMDb",url:"https://www.imdb.com/name/nm4441711/"}]
+      id: 3,
+      name: "Jeff Nichols",
+      born: "1978",
+      bio: "Arkansas-born director of critically acclaimed films like \"Mud\" and \"Take Shelter,\" known for showcasing Arkansas landscapes.",
+      image: "jeff.jpg",
+      links: [
+        { text: "IMDb", url: "https://www.imdb.com/name/nm1636076/" },
+        { text: "Wikipedia", url: "https://en.wikipedia.org/wiki/Jeff_Nichols" }
+      ]
     },
     {
-      id:"p-billy-bob-thornton",
-      name:"Billy Bob Thornton",
-      role:"Actor / Director (Hot Springs AR)",
-      bio:"Wrote, directed, and starred in Sling Blade; Academy Award winner.",
-      image:"https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Billy_Bob_Thornton_2017.jpg/440px-Billy_Bob_Thornton_2017.jpg",
-      films:["film-sling-blade"],
-      links:[{label:"IMDb",url:"https://www.imdb.com/name/nm0000671/"}]
+      id: 3,
+    name: "Ray McKinnon",
+    born: "1957",
+    bio: "Actor, screenwriter, and director with close ties to Arkansas film projects. Appeared in 'Mud' and 'Sling Blade'.",
+    image: "ray.webp",
+    links: [
+      { text: "IMDb", url: "https://www.imdb.com/name/nm0571583/" },
+      { text: "Wikipedia", url: "https://en.wikipedia.org/wiki/Ray_McKinnon" }
+      ]
     },
-    {
-      id:"p-dwight-yoakam",
-      name:"Dwight Yoakam",
-      role:"Actor / Musician",
-      bio:"Country musician and actor; appeared in Sling Blade.",
-      image:"https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Dwight_Yoakam_June_2014.jpg/440px-Dwight_Yoakam_June_2014.jpg",
-      films:["film-sling-blade"],
-      links:[{label:"IMDb",url:"https://www.imdb.com/name/nm0947555/"}]
-    },
-    {
-      id:"p-melissa-joan-hart",
-      name:"Melissa Joan Hart",
-      role:"Actor",
-      bio:"Starred in God's Not Dead 2.",
-      image:"https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Melissa_Joan_Hart_%28cropped%29.jpg/440px-Melissa_Joan_Hart_%28cropped%29.jpg",
-      films:["film-gods-not-dead2"],
-      links:[{label:"IMDb",url:"https://www.imdb.com/name/nm0004993/"}]
-    },
-    {
-      id:"p-jesse-metcalfe",
-      name:"Jesse Metcalfe",
-      role:"Actor",
-      bio:"Co-starred in God's Not Dead 2.",
-      image:"https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Jesse_Metcalfe_2012.jpg/440px-Jesse_Metcalfe_2012.jpg",
-      films:["film-gods-not-dead2"],
-      links:[{label:"IMDb",url:"https://www.imdb.com/name/nm0581238/"}]
-    },
-    {
-      id:"p-steven-yeun",
-      name:"Steven Yeun",
-      role:"Actor",
-      bio:"Starred in Minari, a story set in rural Arkansas.",
-      image:"https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Steven_Yeun_by_Gage_Skidmore.jpg/440px-Steven_Yeun_by_Gage_Skidmore.jpg",
-      films:["film-minari"],
-      links:[{label:"IMDb",url:"https://www.imdb.com/name/nm3081796/"}]
-    },
-    {
-      id:"p-lee-isaac-chung",
-      name:"Lee Isaac Chung",
-      role:"Director / Writer",
-      bio:"Wrote & directed Minari.",
-      image:"https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Lee_Isaac_Chung_Cannes_2023.jpg/440px-Lee_Isaac_Chung_Cannes_2023.jpg",
-      films:["film-minari"],
-      links:[{label:"IMDb",url:"https://www.imdb.com/name/nm1953169/"}]
-    },
-    {
-      id:"p-youn-yuh-jung",
-      name:"Youn Yuh-jung",
-      role:"Actor",
-      bio:"Academy Award-winning performance in Minari.",
-      image:"https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Youn_Yuh-jung_at_the_2021_Oscars_%28cropped%29.jpg/440px-Youn_Yuh-jung_at_the_2021_Oscars_%28cropped%29.jpg",
-      films:["film-minari"],
-      links:[{label:"IMDb",url:"https://www.imdb.com/name/nm0951341/"}]
-    }
-  ];
+    { id: 4,
+    name: "Charles B. Pierce",
+    born: "1938-2010",
+    bio: "Independent filmmaker from Texarkana, Arkansas, best known for directing the cult classic 'The Legend of Boggy Creek'.",
+    image: "charles.webp",
+    links: [
+      { text: "IMDb", url: "https://www.imdb.com/name/nm0682484/" },
+      { text: "Wikipedia", url: "https://en.wikipedia.org/wiki/Charles_B._Pierce" }
+      ];
+    
+  
 
-  const resources = [
-    {
-      id:"res-incentives",
-      title:"State Production Incentives",
-      desc:"Overview of Arkansas film tax credits & rebates. Learn eligibility, spend thresholds, and application steps.",
-      icon:"🎁",
-      url:"#contact"
-    },
-    {
-      id:"res-locations",
-      title:"Location Library",
-      desc:"Browse mountains, rivers, small towns, and urban spaces that double for many looks.",
-      icon:"📍",
-      url:"#contact"
-    },
-    {
-      id:"res-crew",
-      title:"Crew & Vendors",
-      desc:"Find local crew, equipment rental, post houses, and sound stages.",
-      icon:"🛠️",
-      url:"#contact"
-    },
-    {
-      id:"res-permitting",
-      title:"Permits & Logistics",
-      desc:"Quick guide to filming permits, road closures, and municipal contacts across Arkansas.",
-      icon:"📝",
-      url:"#contact"
-    }
-  ];
-
-  /* =============================================================
-     RENDER HELPERS
-  ============================================================= */
-  function el(html){
-    const t=document.createElement('template');
-    t.innerHTML=html.trim();
-    return t.content.firstElementChild;
-  }
-
-  function renderFilmCard(film){
-    const loc=film.locations?.[0]?`Shot in ${film.locations[0]}`:"";
-    return el(`
-      <article class="card" data-type="film" data-id="${film.id}">
-        <div class="card-media">${film.image?`<img src="${film.image}" alt="Poster for ${film.title}">`:""}</div>
-        <div class="card-content">
-          <h3 class="card-title">${film.title}</h3>
-          <div class="card-meta">${film.year}${loc?` • ${loc}`:""}</div>
-          <p class="card-desc">${film.synopsis}</p>
-          <div class="card-actions"><a href="#" data-detail-link="${film.id}" data-type="film">Learn more →</a></div>
+  // Function to render film cards
+  function renderFilms(list) {
+    const container = document.getElementById('films-list');
+    container.innerHTML = '';
+    list.forEach(film => {
+      const card = document.createElement('article');
+      card.className = 'card';
+      card.innerHTML = `
+        <img src="${film.image}" alt="Poster for ${film.title}" />
+        <h3>${film.title} (${film.year})</h3>
+        <p>${film.description}</p>
+        <div class="links">
+          ${film.links.map(link => `<a href="${link.url}" target="_blank" rel="noopener">${link.text}</a>`).join(' | ')}
         </div>
-      </article>`);
-  }
-
-  function renderPersonCard(person){
-    return el(`
-      <article class="card" data-type="person" data-id="${person.id}">
-        <div class="card-media">${person.image?`<img class="person-card-media" src="${person.image}" alt="${person.name}">`:""}</div>
-        <div class="card-content">
-          <h3 class="card-title">${person.name}</h3>
-          <div class="card-meta">${person.role||""}</div>
-          <p class="card-desc">${person.bio||""}</p>
-          <div class="card-actions"><a href="#" data-detail-link="${person.id}" data-type="person">View profile →</a></div>
-        </div>
-      </article>`);
-  }
-
-  function renderResourceCard(res){
-    return el(`
-      <article class="card" data-type="resource" data-id="${res.id}">
-        <div class="card-content">
-          <h3 class="card-title">${res.icon||""} ${res.title}</h3>
-          <p class="card-desc">${res.desc||""}</p>
-          <div class="card-actions"><a href="${res.url}">Learn more →</a></div>
-        </div>
-      </article>`);
-  }
-
-  /* =============================================================
-     POPULATE INITIAL GRIDS
-  ============================================================= */
-  function populateGrids(){
-    const fwrap=document.getElementById('filmGrid');
-    const pwrap=document.getElementById('peopleGrid');
-    const rwrap=document.getElementById('resourceGrid');
-    fwrap.innerHTML="";films.forEach(f=>fwrap.appendChild(renderFilmCard(f)));
-    pwrap.innerHTML="";people.forEach(p=>pwrap.appendChild(renderPersonCard(p)));
-    rwrap.innerHTML="";resources.forEach(r=>rwrap.appendChild(renderResourceCard(r)));
-  }
-
-  /* =============================================================
-     SIMPLE SEARCH
-     - Case-insensitive substring match across selected type
-     - Returns arrays of matching films/people
-  ============================================================= */
-  function searchData(query,type='all'){
-    const q=query.trim().toLowerCase();
-    if(!q) return {films:[],people:[]};
-    const filmMatches=films.filter(f=>{
-      if(type!=='all' && type!=='film') return false;
-      const hay=[f.title,f.synopsis,...(f.locations||[])]\n        .join(' ').toLowerCase();
-      return hay.includes(q);
+      `;
+      container.appendChild(card);
     });
-    const peopleMatches=people.filter(p=>{
-      if(type!=='all' && type!=='person') return false;
-      const hay=[p.name,p.role,p.bio].join(' ').toLowerCase();
-      return hay.includes(q);
+  }
+
+  // Function to render actor cards
+  function renderActors(list) {
+    const container = document.getElementById('actors-list');
+    container.innerHTML = '';
+    list.forEach(actor => {
+      const card = document.createElement('article');
+      card.className = 'card';
+      card.innerHTML = `
+        <img src="${actor.image}" alt="Photo of ${actor.name}" />
+        <h3>${actor.name} (b. ${actor.born})</h3>
+        <p>${actor.bio}</p>
+        <div class="links">
+          ${actor.links.map(link => `<a href="${link.url}" target="_blank" rel="noopener">${link.text}</a>`).join(' | ')}
+        </div>
+      `;
+      container.appendChild(card);
     });
-    return {films:filmMatches,people:peopleMatches};
   }
 
-  function renderSearchResults(res){
-    const fwrap=document.getElementById('filmGrid');
-    const pwrap=document.getElementById('peopleGrid');
-    fwrap.innerHTML="";pwrap.innerHTML="";
+  // Search functionality (search in films titles + descriptions + actors names + bios)
+  function searchArkansas(query) {
+    query = query.trim().toLowerCase();
+    if (!query) return {films: [], actors: []};
 
-    if(res.films.length){res.films.forEach(f=>fwrap.appendChild(renderFilmCard(f)));}
-    else{fwrap.innerHTML='<p>No films found. Try another search.</p>'}
+    const matchedFilms = films.filter(film =>
+      film.title.toLowerCase().includes(query) ||
+      film.description.toLowerCase().includes(query)
+    );
 
-    if(res.people.length){res.people.forEach(p=>pwrap.appendChild(renderPersonCard(p)));}
-    else{pwrap.innerHTML='<p>No people found. Try another search.</p>'}
+    const matchedActors = actors.filter(actor =>
+      actor.name.toLowerCase().includes(query) ||
+      actor.bio.toLowerCase().includes(query)
+    );
+
+    return { films: matchedFilms, actors: matchedActors };
   }
 
-  /* =============================================================
-     DETAIL MODAL
-  ============================================================= */
-  const detailBackdrop=document.getElementById('detailBackdrop');
-  const detailModal=document.getElementById('detailModal');
-  const detailMedia=document.getElementById('detailMedia');
-  const detailTitle=document.getElementById('detailTitle');
-  const detailMeta=document.getElementById('detailMeta');
-  const detailBody=document.getElementById('detailBody');
-  const detailRelated=document.getElementById('detailRelated');
-  const detailRelatedList=document.getElementById('detailRelatedList');
-  const detailClose=document.getElementById('detailClose');
+  // Display search results with links and info
+  function displaySearchResults(results, query) {
+    const container = document.getElementById('search-results');
+    container.innerHTML = '';
+    if (!query) {
+      container.innerHTML = `<p>Please enter a search term to find movies or actors related to Arkansas.</p>`;
+      return;
+    }
 
-  function openDetail(type,id){
-    let obj,meta="",body="",rels=[];
-    if(type==='film'){
-      obj=films.find(f=>f.id===id);if(!obj)return;
-      meta=`${obj.year}${obj.locations?.length?` • ${obj.locations.join(', ')}`:''}`;
-      body=`<p>${obj.synopsis||''}</p>${renderExternalLinks(obj.links)}`;
-      rels=obj.people?.map(pid=>people.find(p=>p.id===pid)).filter(Boolean)||[];
-    }else if(type==='person'){
-      obj=people.find(p=>p.id===id);if(!obj)return;
-      meta=obj.role||"";
-      body=`<p>${obj.bio||''}</p>${renderExternalLinks(obj.links)}`;
-      rels=obj.films?.map(fid=>films.find(f=>f.id===fid)).filter(Boolean)||[];
-    }else{return;}
+    if (results.films.length === 0 && results.actors.length === 0) {
+      container.innerHTML = `<p>No results found for "<strong>${query}</strong>". Try different keywords or explore our featured films and actors below.</p>`;
+      return;
+    }
 
-    detailTitle.textContent=obj.title||obj.name||"";
-    detailMeta.textContent=meta;
-    detailBody.innerHTML=body;
-    detailMedia.innerHTML=obj.image?`<img src="${obj.image}" alt="${obj.title||obj.name}">`:"";
+    let html = `<h2>Search Results for "<em>${query}</em>"</h2>`;
 
-    // Related pills
-    detailRelatedList.innerHTML="";
-    if(rels.length){
-      rels.forEach(r=>{
-        const pill=document.createElement('a');
-        const rType=r.title?'film':'person';
-        pill.href="#";pill.textContent=r.title||r.name;pill.dataset.detailLink=r.id;pill.dataset.type=rType;detailRelatedList.appendChild(pill);
+    if (results.films.length > 0) {
+      html += `<h3>Films</h3><div class="cards">`;
+      results.films.forEach(film => {
+        html += `
+          <article class="card">
+            <img src="${film.image}" alt="Poster for ${film.title}" />
+            <h3>${film.title} (${film.year})</h3>
+            <p>${film.description}</p>
+            <div class="links">
+              ${film.links.map(link => `<a href="${link.url}" target="_blank" rel="noopener">${link.text}</a>`).join(' | ')}
+            </div>
+          </article>
+        `;
       });
-      detailRelated.hidden=false;
-    }else{
-      detailRelated.hidden=true;
+      html += `</div>`;
     }
 
-    detailBackdrop.classList.add('active');
-    detailBackdrop.setAttribute('aria-hidden','false');
-    document.body.style.overflow='hidden';
+    if (results.actors.length > 0) {
+      html += `<h3>Actors</h3><div class="cards">`;
+      results.actors.forEach(actor => {
+        html += `
+          <article class="card">
+            <img src="${actor.image}" alt="Photo of ${actor.name}" />
+            <h3>${actor.name} (b. ${actor.born})</h3>
+            <p>${actor.bio}</p>
+            <div class="links">
+              ${actor.links.map(link => `<a href="${link.url}" target="_blank" rel="noopener">${link.text}</a>`).join(' | ')}
+            </div>
+          </article>
+        `;
+      });
+      html += `</div>`;
+    }
+
+    container.innerHTML = html;
   }
 
-  function closeDetail(){
-    detailBackdrop.classList.remove('active');
-    detailBackdrop.setAttribute('aria-hidden','true');
-    document.body.style.overflow='';
-  }
-
-  detailClose.addEventListener('click',closeDetail);
-  detailBackdrop.addEventListener('click',e=>{if(e.target===detailBackdrop)closeDetail();});
-  document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDetail();});
-
-  function renderExternalLinks(links){
-    if(!links||!links.length) return '';
-    return `<p>Links: ${links.map(l=>`<a href="${l.url}" target="_blank" rel="noopener">${l.label}</a>`).join(' | ')}</p>`;
-  }
-
-  /* =============================================================
-     SEARCH HANDLERS
-  ============================================================= */
-  const searchInput=document.getElementById('searchInput');
-  const searchType=document.getElementById('searchType');
-  const searchBtn=document.getElementById('searchBtn');
-
-  function doSearch(){
-    const q=searchInput.value;const t=searchType.value;
-    if(!q){populateGrids();return;}
-    const res=searchData(q,t);
-    renderSearchResults(res);
-    // Scroll to results top (films)
-    document.getElementById('films').scrollIntoView({behavior:'smooth'});
-  }
-  searchBtn.addEventListener('click',doSearch);
-  searchInput.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();doSearch();}});
-
-  /* =============================================================
-     DELEGATED CLICK HANDLERS FOR DETAIL LINKS
-  ============================================================= */
-  document.addEventListener('click',e=>{
-    const a=e.target.closest('[data-detail-link]');
-    if(a){e.preventDefault();openDetail(a.dataset.type,a.dataset.detailLink);}
+  
+  document.getElementById('search-btn').addEventListener('click', () => {
+    const query = document.getElementById('search-input').value;
+    const results = searchArkansas(query);
+    displaySearchResults(results, query);
   });
 
-  /* =============================================================
-     CONTACT FORM (client-side demo only)
-  ============================================================= */
-  document.getElementById('contactForm').addEventListener('submit',function(e){
-    e.preventDefault();
-    const name=document.getElementById('contactName').value.trim();
-    const email=document.getElementById('contactEmail').value.trim();
-    const msg=document.getElementById('contactMessage').value.trim();
-    const status=document.getElementById('contactStatus');
-    if(!name||!email||!msg){status.textContent='Please fill out all required fields.';return;}
-    status.textContent='Thanks! We\'ll be in touch.';this.reset();
+  
+  document.getElementById('search-input').addEventListener('keydown', e => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      document.getElementById('search-btn').click();
+    }
   });
 
-  /* =============================================================
-     MOBILE MENU
-  ============================================================= */
-  const navToggle=document.getElementById('navToggle');
-  const mobileMenu=document.getElementById('mobileMenu');
-  const mobileMenuClose=document.getElementById('mobileMenuClose');
-  navToggle.addEventListener('click',()=>{mobileMenu.classList.add('active');mobileMenu.setAttribute('aria-hidden','false');});
-  mobileMenuClose.addEventListener('click',closeMobileMenu);
-  function closeMobileMenu(){mobileMenu.classList.remove('active');mobileMenu.setAttribute('aria-hidden','true');}
+  // Show initial message in search results
+  displaySearchResults({films: [], actors: []}, '');
 
-  /* =============================================================
-     INIT
-  ============================================================= */
-  document.addEventListener('DOMContentLoaded',()=>{
-    populateGrids();
-    document.getElementById('copyrightYear').textContent=new Date().getFullYear();
-  });
-  </script>
+  // Initial render of films and actors sections
+  renderFilms(films);
+  renderActors(actors);
+</script>
+
 </body>
 </html>
-
