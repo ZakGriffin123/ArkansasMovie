@@ -5,159 +5,62 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Arkansas Film Industry Hub</title>
 <style>
-  /* Reset & base */
-  * {
-    box-sizing: border-box;
-  }
+  * { box-sizing: border-box; }
   body {
     margin: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: #f9fafb;
-    color: #222;
+    background: #f9fafb; color: #222;
   }
-  a {
-    color: #0078D7;
-    text-decoration: none;
-  }
-  a:hover {
-    text-decoration: underline;
-  }
+  a { color: #0078D7; text-decoration: none; }
+  a:hover { text-decoration: underline; }
 
   header {
-    background: #004d40;
-    color: white;
+    background: #004d40; color: white;
     padding: 1rem 1.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    display: flex; align-items: center; justify-content: space-between;
     flex-wrap: wrap;
   }
-  header h1 {
-    margin: 0;
-    font-weight: 700;
-    font-size: 1.5rem;
-  }
-  nav {
-    margin-top: 0.5rem;
-    width: 100%;
-  }
-  nav ul {
-    list-style: none;
-    padding: 0; margin: 0;
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
-  nav li {
-  }
+  header h1 { margin: 0; font-weight: 700; font-size: 1.5rem; }
+  nav { margin-top: 0.5rem; width: 100%; }
+  nav ul { list-style: none; padding: 0; margin: 0; display: flex; gap: 1rem; flex-wrap: wrap; }
 
-  main {
-    max-width: 1100px;
-    margin: 2rem auto;
-    padding: 0 1rem;
-  }
-
-  .search-container {
-    margin-bottom: 2rem;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-  }
+  main { max-width: 1100px; margin: 2rem auto; padding: 0 1rem; }
+  .search-container { margin-bottom: 2rem; display: flex; flex-wrap: wrap; gap: 0.5rem; }
   .search-container input[type="text"] {
-    flex-grow: 1;
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
-    border: 2px solid #004d40;
-    border-radius: 4px;
+    flex-grow: 1; padding: 0.5rem 1rem; font-size: 1rem;
+    border: 2px solid #004d40; border-radius: 4px;
   }
   .search-container button {
-    background: #00796b;
-    color: white;
-    border: none;
-    padding: 0.5rem 1.5rem;
-    font-size: 1rem;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background 0.3s ease;
+    background: #00796b; color: white; border: none;
+    padding: 0.5rem 1.5rem; font-size: 1rem; border-radius: 4px;
+    cursor: pointer; transition: background 0.3s ease;
   }
-  .search-container button:hover {
-    background: #004d40;
-  }
+  .search-container button:hover { background: #004d40; }
 
-  .section-title {
-    font-size: 1.8rem;
-    margin-bottom: 1rem;
-    color: #004d40;
-  }
-
-  .cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
-    gap: 1.5rem;
-  }
+  .section-title { font-size: 1.8rem; margin-bottom: 1rem; color: #004d40; }
+  .cards { display: grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap: 1.5rem; }
   .card {
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 3px 7px rgb(0 0 0 / 0.1);
-    padding: 1rem;
-    display: flex;
-    flex-direction: column;
-    transition: transform 0.2s ease;
+    background: white; border-radius: 8px; box-shadow: 0 3px 7px rgb(0 0 0 / 0.1);
+    padding: 1rem; display: flex; flex-direction: column; transition: transform 0.2s ease;
   }
-  .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 14px rgb(0 0 0 / 0.15);
-  }
-  .card img {
-    width: 100%;
-    height: 160px;
-    object-fit: cover;
-    border-radius: 6px;
-    margin-bottom: 1rem;
-  }
-  .card h3 {
-    margin: 0 0 0.5rem 0;
-    color: #00796b;
-  }
-  .card p {
-    flex-grow: 1;
-  }
-  .card .links a {
-    display: inline-block;
-    margin-top: 0.5rem;
-    font-weight: 600;
-  }
+  .card:hover { transform: translateY(-5px); box-shadow: 0 6px 14px rgb(0 0 0 / 0.15); }
+  .card img { width: 100%; height: 160px; object-fit: cover; border-radius: 6px; margin-bottom: 1rem; }
+  .card h3 { margin: 0 0 0.5rem 0; color: #00796b; }
+  .card p { flex-grow: 1; }
+  .card .links a { display: inline-block; margin-top: 0.5rem; font-weight: 600; }
 
-  /* Search results area */
-  #search-results {
-    margin-top: 2rem;
-  }
-  #search-results h2 {
-    color: #004d40;
-  }
+  #search-results { margin-top: 2rem; }
+  #search-results h2 { color: #004d40; }
 
   footer {
-    background: #004d40;
-    color: white;
-    text-align: center;
-    padding: 1rem;
-    margin-top: 3rem;
+    background: #004d40; color: white; text-align: center;
+    padding: 1rem; margin-top: 3rem;
   }
 
-  /* Responsive adjustments */
   @media (max-width: 600px) {
-    header {
-      justify-content: center;
-      text-align: center;
-    }
-    nav ul {
-      justify-content: center;
-    }
-    .search-container {
-      flex-direction: column;
-    }
-    .search-container button {
-      width: 100%;
-    }
+    header { justify-content: center; text-align: center; }
+    nav ul { justify-content: center; }
+    .search-container { flex-direction: column; }
+    .search-container button { width: 100%; }
   }
 </style>
 </head>
@@ -186,16 +89,12 @@
 
   <section id="films" aria-label="Arkansas films">
     <h2 class="section-title">Featured Arkansas Films</h2>
-    <div class="cards" id="films-list">
-      <!-- Films inserted by JS -->
-    </div>
+    <div class="cards" id="films-list"></div>
   </section>
 
   <section id="actors" aria-label="Arkansas actors">
-    <h2 class="section-title">Recognized Arkansas Actors</h2>
-    <div class="cards" id="actors-list">
-      <!-- Actors inserted by JS -->
-    </div>
+    <h2 class="section-title">Recognized Arkansas Actors & Directors</h2>
+    <div class="cards" id="actors-list"></div>
   </section>
 </main>
 
@@ -204,18 +103,16 @@
 </footer>
 
 <script>
-  // Expanded data for Arkansas films and actors
-
   const films = [
     {
       id: 1,
       title: "Mud",
       year: 2012,
       description: "A coming-of-age drama about two boys who discover a fugitive hiding on an island in the Mississippi River, filmed extensively in Arkansas.",
-      image: "Mud_poster.jpg",
+      image: "https://upload.wikimedia.org/wikipedia/en/e/e8/Mud2012Poster.jpg",
       links: [
         { text: "IMDb", url: "https://www.imdb.com/title/tt1935179/" },
-        { text: "Wikipedia", url: "https://en.wikipedia.org/wiki/Jeff_Nichols" }
+        { text: "Wikipedia", url: "https://en.wikipedia.org/wiki/Mud_(2012_film)" }
       ]
     },
     {
@@ -223,7 +120,7 @@
       title: "Take Shelter",
       year: 2011,
       description: "A psychological thriller about a man in a small Arkansas town who has apocalyptic visions.",
-      image: "take shelter.jpg",
+      image: "https://upload.wikimedia.org/wikipedia/en/f/f3/Take_Shelter_film_poster.jpg",
       links: [
         { text: "IMDb", url: "https://www.imdb.com/title/tt1675192/" },
         { text: "Wikipedia", url: "https://en.wikipedia.org/wiki/Take_Shelter" }
@@ -234,7 +131,7 @@
       title: "The Double",
       year: 2013,
       description: "A comedy-drama involving a mistaken identity and espionage, set and filmed in Arkansas.",
-      image: "thedouble.jpg",
+      image: "https://upload.wikimedia.org/wikipedia/en/2/29/The_Double_2013_Poster.jpg",
       links: [
         { text: "IMDb", url: "https://www.imdb.com/title/tt1825157/" },
         { text: "Wikipedia", url: "https://en.wikipedia.org/wiki/The_Double_(2013_film)" }
@@ -245,21 +142,21 @@
       title: "Winter’s Bone",
       year: 2010,
       description: "A gritty drama about a girl fighting to save her family home in the rural Ozarks, including parts of Arkansas.",
-      image: "wintersbone.jpg",
+      image: "https://upload.wikimedia.org/wikipedia/en/0/0f/Winters_bone_poster.jpg",
       links: [
         { text: "IMDb", url: "https://www.imdb.com/title/tt1399683/" },
         { text: "Wikipedia", url: "https://en.wikipedia.org/wiki/Winter%27s_Bone" }
       ]
     },
     {
-     id: 5,
-    title: "The Legend of Boggy Creek",
-    year: 1972,
-    description: "A docudrama-style horror film about sightings of the Fouke Monster in Arkansas. It became a cult classic for its eerie storytelling.",
-    image: "boggy.jpg",
-    links: [
-      { text: "IMDb", url: "https://www.imdb.com/title/tt0068837/" },
-      { text: "Wikipedia", url: "https://en.wikipedia.org/wiki/The_Legend_of_Boggy_Creek" }
+      id: 5,
+      title: "The Legend of Boggy Creek",
+      year: 1972,
+      description: "A docudrama-style horror film about sightings of the Fouke Monster in Arkansas. It became a cult classic for its eerie storytelling.",
+      image: "https://upload.wikimedia.org/wikipedia/en/0/0f/The_Legend_of_Boggy_Creek.jpg",
+      links: [
+        { text: "IMDb", url: "https://www.imdb.com/title/tt0068837/" },
+        { text: "Wikipedia", url: "https://en.wikipedia.org/wiki/The_Legend_of_Boggy_Creek" }
       ]
     },
     {
@@ -267,7 +164,7 @@
       title: "Sling Blade",
       year: 1996,
       description: "A drama about a man with a troubled past returning to his hometown in Arkansas, starring and written by Billy Bob Thornton.",
-      image: "slingblade.jpg",
+      image: "https://upload.wikimedia.org/wikipedia/en/4/40/Sling_Blade_poster.jpg",
       links: [
         { text: "IMDb", url: "https://www.imdb.com/title/tt0117666/" },
         { text: "Wikipedia", url: "https://en.wikipedia.org/wiki/Sling_Blade" }
@@ -280,8 +177,8 @@
       id: 1,
       name: "Billy Bob Thornton",
       born: "1955",
-      bio: "Actor, filmmaker, and musician from Arkansas, known for writing and starring in \"Sling Blade\" and roles in \"Bad Santa\" and \"Fargo.\"",
-      image: "billy.webp",
+      bio: "Actor, writer, and director from Hot Springs, Arkansas. Known for 'Sling Blade', which he wrote, directed, and starred in.",
+      image: "https://upload.wikimedia.org/wikipedia/commons/2/22/Billy_Bob_Thornton_2012.jpg",
       links: [
         { text: "IMDb", url: "https://www.imdb.com/name/nm0000673/" },
         { text: "Wikipedia", url: "https://en.wikipedia.org/wiki/Billy_Bob_Thornton" }
@@ -289,21 +186,10 @@
     },
     {
       id: 2,
-      name: "Mary Steenburgen",
-      born: "1953",
-      bio: "Oscar-winning actress from Arkansas, known for roles in \"Melvin and Howard,\" \"Step Brothers,\" and \"Back to the Future Part III.\"",
-      image: "mary.jpg",
-      links: [
-        { text: "IMDb", url: "https://www.imdb.com/name/nm0829117/" },
-        { text: "Wikipedia", url: "https://en.wikipedia.org/wiki/Mary_Steenburgen" }
-      ]
-    },
-    {
-      id: 3,
       name: "Jeff Nichols",
       born: "1978",
-      bio: "Arkansas-born director of critically acclaimed films like \"Mud\" and \"Take Shelter,\" known for showcasing Arkansas landscapes.",
-      image: "jeff.jpg",
+      bio: "Director and screenwriter from Little Rock, Arkansas, known for 'Mud', 'Take Shelter', and 'Loving'.",
+      image: "https://upload.wikimedia.org/wikipedia/commons/6/67/Jeff_Nichols_2016.jpg",
       links: [
         { text: "IMDb", url: "https://www.imdb.com/name/nm1636076/" },
         { text: "Wikipedia", url: "https://en.wikipedia.org/wiki/Jeff_Nichols" }
@@ -311,28 +197,39 @@
     },
     {
       id: 3,
-    name: "Ray McKinnon",
-    born: "1957",
-    bio: "Actor, screenwriter, and director with close ties to Arkansas film projects. Appeared in 'Mud' and 'Sling Blade'.",
-    image: "ray.webp",
-    links: [
-      { text: "IMDb", url: "https://www.imdb.com/name/nm0571583/" },
-      { text: "Wikipedia", url: "https://en.wikipedia.org/wiki/Ray_McKinnon" }
+      name: "Ray McKinnon",
+      born: "1957",
+      bio: "Actor, screenwriter, and director with close ties to Arkansas film projects. Appeared in 'Mud' and 'Sling Blade'.",
+      image: "https://upload.wikimedia.org/wikipedia/commons/d/d1/Ray_McKinnon_2013.jpg",
+      links: [
+        { text: "IMDb", url: "https://www.imdb.com/name/nm0571583/" },
+        { text: "Wikipedia", url: "https://en.wikipedia.org/wiki/Ray_McKinnon" }
       ]
     },
-    { id: 4,
-    name: "Charles B. Pierce",
-    born: "1938-2010",
-    bio: "Independent filmmaker from Texarkana, Arkansas, best known for directing the cult classic 'The Legend of Boggy Creek'.",
-    image: "charles.webp",
-    links: [
-      { text: "IMDb", url: "https://www.imdb.com/name/nm0682484/" },
-      { text: "Wikipedia", url: "https://en.wikipedia.org/wiki/Charles_B._Pierce" }
-      ];
-    
-  
+    {
+      id: 4,
+      name: "Charles B. Pierce",
+      born: "1938-2010",
+      bio: "Independent filmmaker from Texarkana, Arkansas, best known for directing the cult classic 'The Legend of Boggy Creek'.",
+      image: "https://upload.wikimedia.org/wikipedia/en/7/79/Charles_B_Pierce.jpg",
+      links: [
+        { text: "IMDb", url: "https://www.imdb.com/name/nm0682484/" },
+        { text: "Wikipedia", url: "https://en.wikipedia.org/wiki/Charles_B._Pierce" }
+      ]
+    },
+    {
+      id: 5,
+      name: "Mary Steenburgen",
+      born: "1953",
+      bio: "Oscar‑winning actress born in Newport, Arkansas, known for roles in 'Melvin and Howard', 'Step Brothers', and 'Back to the Future Part III'.",
+      image: "https://upload.wikimedia.org/wikipedia/commons/4/43/Mary_Steenburgen_2015.jpg",
+      links: [
+        { text: "IMDb", url: "https://www.imdb.com/name/nm0000658/" },
+        { text: "Wikipedia", url: "https://en.wikipedia.org/wiki/Mary_Steenburgen" }
+      ]
+    }
+  ];
 
-  // Function to render film cards
   function renderFilms(list) {
     const container = document.getElementById('films-list');
     container.innerHTML = '';
@@ -351,7 +248,6 @@
     });
   }
 
-  // Function to render actor cards
   function renderActors(list) {
     const container = document.getElementById('actors-list');
     container.innerHTML = '';
@@ -370,25 +266,21 @@
     });
   }
 
-  // Search functionality (search in films titles + descriptions + actors names + bios)
   function searchArkansas(query) {
     query = query.trim().toLowerCase();
     if (!query) return {films: [], actors: []};
 
     const matchedFilms = films.filter(film =>
-      film.title.toLowerCase().includes(query) ||
-      film.description.toLowerCase().includes(query)
+      film.title.toLowerCase().includes(query) || film.description.toLowerCase().includes(query)
     );
 
     const matchedActors = actors.filter(actor =>
-      actor.name.toLowerCase().includes(query) ||
-      actor.bio.toLowerCase().includes(query)
+      actor.name.toLowerCase().includes(query) || actor.bio.toLowerCase().includes(query)
     );
 
     return { films: matchedFilms, actors: matchedActors };
   }
 
-  // Display search results with links and info
   function displaySearchResults(results, query) {
     const container = document.getElementById('search-results');
     container.innerHTML = '';
@@ -403,7 +295,6 @@
     }
 
     let html = `<h2>Search Results for "<em>${query}</em>"</h2>`;
-
     if (results.films.length > 0) {
       html += `<h3>Films</h3><div class="cards">`;
       results.films.forEach(film => {
@@ -422,7 +313,7 @@
     }
 
     if (results.actors.length > 0) {
-      html += `<h3>Actors</h3><div class="cards">`;
+      html += `<h3>Actors & Directors</h3><div class="cards">`;
       results.actors.forEach(actor => {
         html += `
           <article class="card">
@@ -437,18 +328,15 @@
       });
       html += `</div>`;
     }
-
     container.innerHTML = html;
   }
 
-  
   document.getElementById('search-btn').addEventListener('click', () => {
     const query = document.getElementById('search-input').value;
     const results = searchArkansas(query);
     displaySearchResults(results, query);
   });
 
-  
   document.getElementById('search-input').addEventListener('keydown', e => {
     if (e.key === 'Enter') {
       e.preventDefault();
@@ -456,10 +344,7 @@
     }
   });
 
-  // Show initial message in search results
   displaySearchResults({films: [], actors: []}, '');
-
-  // Initial render of films and actors sections
   renderFilms(films);
   renderActors(actors);
 </script>
