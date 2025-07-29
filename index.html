@@ -1,10 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Arkansas Movie Finder">
-    <meta name="author" content="John Smith">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Arkansas Movie Search</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <style>
@@ -41,32 +39,33 @@
         button:hover {
             background-color: #0056b3;
         }
-        #url1 {
+        #url1, #url2 {
             text-align: center;
             margin-bottom: 20px;
             color: #888;
+            font-size: 12px;
         }
-        .movie-container {
+        .movie-container, .actor-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 20px;
         }
-        .movie {
+        .movie, .actor {
             background-color: white;
             padding: 15px;
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             text-align: center;
         }
-        .movie img {
+        .movie img, .actor img {
             max-width: 100%;
             border-radius: 5px;
         }
-        .movie h3 {
+        .movie h3, .actor h3 {
             font-size: 18px;
             margin: 10px 0 5px;
         }
-        .movie p {
+        .movie p, .actor p {
             font-size: 14px;
             color: #666;
         }
@@ -75,46 +74,51 @@
 <body>
     <h1>Arkansas Movie Search</h1>
     <div class="search-container">
-        <p>Enter Movie Name: <input type="text" id="moviename"></p>
+        <p>Enter Movie Name: <input type="text" id="moviename" /></p>
         <p><button onclick="MovieSearch()">Search for Movie</button></p>
         <div id="url1"></div>
     </div>
     <div class="movie-container" id="movieResults"></div>
 
-<script>
-async function MovieSearch() {
-    var moviename = document.getElementById("moviename").value;
-    var api_key = "1c3df5b73705f054ad8dfe8bc03f7f33";
-    var language = "en-US";
-    var page = "1";
-    var include_adult = "false";
-    var query = encodeURI(moviename);
-    var myURL = "https://api.themoviedb.org/3/search/movie?api_key=" + api_key + "&language=" + language + "&query=" + query + "&page=" + page + "&include_adult=" + include_adult;
+    <h1>Arkansas Actor Search</h1>
+    <div class="search-container">
+        <p>Enter Actor Name: <input type="text" id="actorname" /></p>
+        <p><button onclick="ActorSearch()">Search for Actor</button></p>
+        <div id="url2"></div>
+    </div>
+    <div class="actor-container" id="actorResults"></div>
 
-    document.getElementById("url1").innerHTML = "URL: " + myURL;
+    <script>
+        async function MovieSearch() {
+            var moviename = document.getElementById("moviename").value;
+            var api_key = "1c3df5b73705f054ad8dfe8bc03f7f33";
+            var query = encodeURI(moviename);
+            var myURL = `https://api.themoviedb.org/3/search/movie?api_key=${api_key}&language=en-US&query=${query}&page=1&include_adult=false`;
 
-    let msgObject = await fetch(myURL);
-    let msgJSONText = await msgObject.text();
-    let msg = JSON.parse(msgJSONText);
+            document.getElementById("url1").innerHTML = "URL: " + myURL;
 
-    let container = document.getElementById("movieResults");
-    container.innerHTML = "";
+            let response = await fetch(myURL);
+            let data = await response.json();
 
-    for (let i = 0; i < 25 && i < msg.results.length; i++) {
-        let movie = msg.results[i];
-        let title = movie.original_title || "No Title";
-        let overview = movie.overview || "No Description Available.";
-        let imageSrc = movie.poster_path ? "https://image.tmdb.org/t/p/w500" + movie.poster_path : "";
+            let container = document.getElementById("movieResults");
+            container.innerHTML = "";
 
-        let movieHTML = `<div class="movie">
-            ${imageSrc ? `<img src="${imageSrc}" alt="${title} poster">` : ""}
-            <h3>${title}</h3>
-            <p>${overview}</p>
-        </div>`;
+            for (let i = 0; i < 25 && i < data.results.length; i++) {
+                let movie = data.results[i];
+                let title = movie.original_title || "No Title";
+                let overview = movie.overview || "No Description Available.";
+                let imageSrc = movie.poster_path ? "https://image.tmdb.org/t/p/w500" + movie.poster_path : "";
 
-        container.innerHTML += movieHTML;
-    }
-}
-</script>
-</body>
-</html>
+                let movieHTML = `<div class="movie">
+                    ${imageSrc ? `<img src="${imageSrc}" alt="${title} poster">` : ""}
+                    <h3>${title}</h3>
+                    <p>${overview}</p>
+                </div>`;
+
+                container.innerHTML += movieHTML;
+            }
+        }
+
+        async function ActorSearch() {
+            var actorname = document.getElementById("actorname").value;
+            var api_k_
