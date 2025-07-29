@@ -121,4 +121,33 @@
 
         async function ActorSearch() {
             var actorname = document.getElementById("actorname").value;
-            var api_k_
+            var api_key = "1c3df5b73705f054ad8dfe8bc03f7f33";
+            var query = encodeURI(actorname);
+            var myURL = `https://api.themoviedb.org/3/search/person?api_key=${api_key}&language=en-US&query=${query}&page=1&include_adult=false`;
+
+            document.getElementById("url2").innerHTML = "URL: " + myURL;
+
+            let response = await fetch(myURL);
+            let data = await response.json();
+
+            let container = document.getElementById("actorResults");
+            container.innerHTML = "";
+
+            for (let i = 0; i < 25 && i < data.results.length; i++) {
+                let actor = data.results[i];
+                let name = actor.name || "No Name";
+                let known = actor.known_for?.map(f => f.original_title || f.name).join(", ") || "N/A";
+                let imageSrc = actor.profile_path ? "https://image.tmdb.org/t/p/w500" + actor.profile_path : "";
+
+                let actorHTML = `<div class="actor">
+                    ${imageSrc ? `<img src="${imageSrc}" alt="${name} photo">` : ""}
+                    <h3>${name}</h3>
+                    <p>Known for: ${known}</p>
+                </div>`;
+
+                container.innerHTML += actorHTML;
+            }
+        }
+    </script>
+</body>
+</html>
