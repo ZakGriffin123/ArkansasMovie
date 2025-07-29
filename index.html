@@ -104,7 +104,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             var moviename = document.getElementById("moviename").value;
             var api_key = "1c3df5b73705f054ad8dfe8bc03f7f33";
             var query = encodeURI(moviename);
-            
+            var myURL = `https://api.themoviedb.org/3/search/movie?api_key=${api_key}&language=en-US&query=${query}&page=1&include_adult=false`;
 
             document.getElementById("url1").innerHTML = "URL: " + myURL;
 
@@ -134,7 +134,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             var actorname = document.getElementById("actorname").value;
             var api_key = "1c3df5b73705f054ad8dfe8bc03f7f33";
             var query = encodeURI(actorname);
-            
+            var myURL = `https://api.themoviedb.org/3/search/person?api_key=${api_key}&language=en-US&query=${query}&page=1&include_adult=false`;
 
             document.getElementById("url2").innerHTML = "URL: " + myURL;
 
